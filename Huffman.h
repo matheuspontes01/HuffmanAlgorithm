@@ -70,4 +70,18 @@ void buildMinHeap(MinHeap*);
  */
 bool isLeaf(Node*);
 
+/**
+ * Libera toda a árvore.
+ * @param Node* raiz da árvore a ser removida
+ */
+void freeTree(Node*);
+
+void countFrequencies(const char*, int*);
+Node* buildHuffmanTree(int*);
+void createCodes(Node*, char*, int, char**);
+void encodeString(const char*, char**, char*);
+void saveHuffmanArq(const char*, Node*, const char*);
+void readHuffmanArchive(const char*, Node**, char**);
+void decodeString(Node*, const char*, char*);
+
 #endif

@@ -79,3 +79,12 @@ bool isLeaf(Node* node) {
     }
     return false;
 }
+
+void freeTree(Node* root) {
+    if (root == NULL)
+        return;
+
+    freeTree(root->left);
+    freeTree(root->right);
+    free(root);
+}
