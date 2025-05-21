@@ -65,6 +65,6 @@ int main() {
     free(decodedString);
     free(encodedString);
     freeTree(root);
-
+    
     return 0;
 }

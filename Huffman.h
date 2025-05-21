@@ -76,12 +76,59 @@ bool isLeaf(Node*);
  */
 void freeTree(Node*);
 
+/**
+ * Conta a frequência de cada caractere na string de entrada.
+ * @param const char* ponteiro para o string de entrada
+ * @param int* vetor (tamanho 256) de ponteiros onde serão armazenadas as frequências
+ */
 void countFrequencies(const char*, int*);
+
+/**
+ * Constrói a árvore de Huffman a partir do vetor de frequências.
+ * @param int* vetor de inteiros contando as frequências de cada caractere
+ * @return Node* ponteiro para a raiz da árvore de Huffman construída 
+ */
 Node* buildHuffmanTree(int*);
+
+/**
+ * Cria os códigos binários para cada caractere a partir de uma árvore de Huffman. 
+ * @param Node* ponteiro para a raiz da árvore
+ * @param char* Vetor temporário para armazenar o código atual (usado na recursão)
+ * @param int profundidade atual da árvore (posição no vetor de código)
+ * @param char** vetor de strings onde serão armazenados os códigos binários gerados
+ */
 void createCodes(Node*, char*, int, char**);
+
+/**
+ * Codifica a string de entrada utilizando os códigos de Huffman. 
+ * @param const char* Ponteiro para a string de entrada
+ * @param char** Vetor de string com os códigos binários de cada caractere
+ * @param char* Ponteiro para a string onde será armazenada a codificação final
+ */
 void encodeString(const char*, char**, char*);
+
+/**
+ * Salva a árvore de Huffman e a string codificada em um arquivo
+ * @param const char* Nome do arquivo onde os dados serão salvos
+ * @param Node* Ponteiro para a raiz da árvore
+ * @param const char* Ponteiro para a string codificada
+ */
 void saveHuffmanArq(const char*, Node*, const char*);
+
+/**
+ * Lê o arquivo com os dados da árvore de Huffman e reconstrói a árvore e a string codificada. 
+ * @param const char* Nome do arquivo a ser lido
+ * @param Node** Ponteiro da raiz da árvore que vai ser reconstruída
+ * @param char** Ponteiro para a string onde será armazenada a codificação lida
+ */
 void readHuffmanArchive(const char*, Node**, char**);
+
+/**
+ * Decodifica a string codificada utilizando a árvore de Huffman. 
+ * @param Node* ponteiro para a raiz da árvore
+ * @param const char* ponteiro para a string codificada
+ * @param char* ponteiro para a string onde será armazenada a mensagem decodificada
+ */
 void decodeString(Node*, const char*, char*);
 
 #endif

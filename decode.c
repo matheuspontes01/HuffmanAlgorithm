@@ -9,9 +9,9 @@ Node* deserializeTree1(FILE *archive) {
 
     if (c == '1') {
         char character = fgetc(archive);
-        return createNode(character, 0);
+        return createNode(character, 0); // Nó folha
     } else {
-        Node* node = createNode('\0', 0);
+        Node* node = createNode('\0', 0); // Nó interno
         node->left = deserializeTree1(archive);
         node->right = deserializeTree1(archive);
         return node;
@@ -20,7 +20,7 @@ Node* deserializeTree1(FILE *archive) {
 }
 
 Node* deserializeTree(FILE *archive) {
-    return deserializeTree1(archive);
+    return deserializeTree1(archive); // Função intermediária
 }
 
 void decodeString(Node* root, const char* encodedString, char* result) {
@@ -35,11 +35,11 @@ void decodeString(Node* root, const char* encodedString, char* result) {
 
         if (isLeaf(curr)){
             result[pos++] = curr->ch;
-            curr = root;
+            curr = root; // Reinicia a partir da raiz
         }
         encodedString++;
     }
-    result[pos] = '\0';
+    result[pos] = '\0'; // Finaliza a string
 }
 
 void readHuffmanArchive(const char* way, Node** root, char** encodedString) {
@@ -49,16 +49,17 @@ void readHuffmanArchive(const char* way, Node** root, char** encodedString) {
         return;
     }
 
-    *root = deserializeTree(archive);
+    *root = deserializeTree(archive); // Reconstrói a árvore
 
     int c;
-    while ((c = fgetc(archive)) != '\n' && c != EOF);
+    while ((c = fgetc(archive)) != '\n' && c != EOF); // Pula para a linha da string codificada
 
     size_t capacity = 1024;
     size_t size = 0;
 
-    *encodedString = (char*)malloc(capacity);
+    *encodedString = (char*)malloc(capacity); // Inicia buffer
 
+    // Lê o restante da string codificada
     while ((c = fgetc(archive)) != EOF) {
         (*encodedString)[size++] = (char)c;
         if (size >= capacity) {
@@ -66,7 +67,7 @@ void readHuffmanArchive(const char* way, Node** root, char** encodedString) {
             *encodedString = (char*)realloc(*encodedString, capacity);
         }
     }
-    (*encodedString)[size] = '\0';
+    (*encodedString)[size] = '\0'; // Finaliza a string
 
     fclose(archive);
 }
