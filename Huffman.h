@@ -13,6 +13,9 @@ typedef struct {
     int capacity;
     Node** array;
 } MinHeap;
+// Utilizaremos MinHeap para construir árvores de Huffman, 
+// pois garante que os nós com as menores frequências sejam sempre os primeiros
+// sejam selecionados para formar a árvore.
 
 /**
  * Cria o novo nó da árvore de Huffman com o valor fornecido.
@@ -23,7 +26,7 @@ typedef struct {
 Node* createNode(unsigned char, int);
 
 /**
- * Cria uma min-heap com uma capacidade fornecida.
+ * Cria uma min-heap com uma capacidade fornecida. 
  * @param int capacidade com número máximo de elementos na heap
  * @return MinHeap* ponteiro para a nova minHeap criada
  */
